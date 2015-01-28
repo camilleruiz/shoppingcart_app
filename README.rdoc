@@ -1,2 +1,17 @@
 Rene Des Cart:
 A Shopping Cart application developed by Camille Ruiz
+
+Progress:
+- Login/Logout using Devise gem
+- Started incorporating bootstrap
+- Listing items
+
+Problems/challenges encountered:
+- login/logout working on localhost, didn't work in heroku
+	- fixed through routes
+- didn't understand how bootstrap works (still feeling my way through it)
+- didn't know how to display objects/instances from database
+
+Next steps:
+- logic of putting item in cart
+- design

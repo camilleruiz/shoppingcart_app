@@ -3,7 +3,8 @@
 	<h1>Rene Des Cart</h1>
 
 	<% if user_signed_in? %>
-		<h2>You have succesfully signed in</h2>
+		<label>You have succesfully signed in</label>
+		<br>
 		<%= link_to "Sign Out", destroy_user_session_path, :method => :delete %>
 
 	<% else %>

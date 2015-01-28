@@ -1,28 +1,35 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Shopping Cart</title>
+  <title>Rene Des Cart</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
 	<header class="navbar navbar-fixed-top">
-			<div class="navbar-inner">
+			<div>
 					<div class="container">
+						<h3> Rene Des Cart </h3>
 						<nav>
-							
+							<ul class="nav pull-right">
+
+								<% if !user_signed_in? %>
+									<li><%= link_to "Sign in", '#' %></li>
+								<% end %>
+							</ul>
 						</nav>
 					</div>
 			</div>
 	</header>
-	<% if notice %>
-	  <p class="alert alert-success"><%= notice %></p>
-	<% end %>
-	<% if alert %>
-	  <p class="alert alert-danger"><%= alert %></p>
-	<% end %>
-	<%= yield %>
-
+	<div class="container">
+		<% if notice %>
+		  <p class="alert alert-success"><%= notice %></p>
+		<% end %>
+		<% if alert %>
+		  <p class="alert alert-danger"><%= alert %></p>
+		<% end %>
+		<%= yield %>
+	</div>
 </body>
 </html>

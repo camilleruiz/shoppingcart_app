@@ -22,7 +22,7 @@ class HomeController < ApplicationController
 	end
 
 	def removefromcart
-		cart_item = CartItem.where(params[:cart_item_id])
+		cart_item = CartItem.where(id: params[:cart_item_id])
 		if !cart_item.blank?
 			cart_item.first().destroy
 			refresh

@@ -5,12 +5,12 @@
 			<div id="owl-demo" class="owl-carousel owl-theme">
 				<% @items_list.each do |item| %>
 					<div>
-						<h4><%= item.name %>: Php<%= item.price %> </h4>
+						<h4><%= item.name %><br>Php<%= item.price %> </h4>
+						<%= item.description %><br><br>
 						<%= form_tag url_for(:controller=>"home", :action => "addtocart"), :method => "post" do %>
 								<%= hidden_field_tag :item_id,  item.id %>
 								<%= submit_tag 'Add to Cart', class: "btn btn-default" %> 
 						<% end %>
-						<p><%= item.description %></p>
 						<br>
 					</div>
 				<% end %>
@@ -29,7 +29,7 @@
 				<div id="owl-demo2" class="owl-carousel owl-theme">
 					<% (0..@cart_list.size-1).each do |i| %>
 						<div>
-							<%= @cart_list[i].name %> (Php<%= @cart_list[i].price %>): 
+							<%= @cart_list[i].name %> (Php<%= @cart_list[i].price %>)<br> 
 							<% if @cart_items[i].quantity > 1 %> 
 								<%= @cart_items[i].quantity %> pieces
 							<% else %>

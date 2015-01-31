@@ -7,22 +7,20 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-	<header class="navbar navbar-fixed-top">
-			<div class="navbar-inner">
-					<div class="container">
-						<h1> Rene Des Cart </h1>
-						<nav>
-							<ul class="nav pull-left">
-								<% if !user_signed_in? %>
-									<li><%= link_to "Sign In", new_user_session_path, :method => :get %></li>
-								<% else %>
-									<li><%= link_to "Sign Out", destroy_user_session_path, :method => :delete %></li>
-								<% end %>
-							</ul>
-						</nav>
-					</div>
-			</div>
-	</header>
+	<nav id="navigation" class="navbar navbar-default navbar-fixed-top">
+	  <div class="container">
+	    <div class="navbar-header">
+	      <%= link_to 'Rene Des Cart', root_url, class: 'navbar-brand' %>
+	    </div>
+	       <ul class="nav navbar-nav navbar-right">
+	       	
+		      <% if user_signed_in? %>
+		      	 <li> <div class="navbar-name"> <%= current_user.email %> </div></li>
+		      	 <li><%= link_to 'Sign out', destroy_user_session_path, :method=>'delete' %></li>
+		      <% end %>
+		    </ul>
+	</nav>
+
 	<div class="container">
 		<% if notice %>
 		  <p class="alert alert-success"><%= notice %></p>

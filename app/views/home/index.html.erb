@@ -1,15 +1,49 @@
-
 <div class="center hero-unit">
 	<% if user_signed_in? %>
-		<label>Welcome, <%= current_user.email %>! You have succesfully signed in.</label>
+		<div>
+			<h2> List of Available Items </h2>
+			<div id="owl-demo" class="owl-carousel owl-theme">
+				<% @items_list.each do |item| %>
+					<div>
+						<h4><%= item.name %>: Php<%= item.price %> </h4>
+						<%= form_tag url_for(:controller=>"home", :action => "addtocart"), :method => "post" do %>
+								<%= hidden_field_tag :item_id,  item.id %>
+								<%= submit_tag 'Add to Cart', class: "btn btn-default" %> 
+						<% end %>
+						<p><%= item.description %></p>
+						<br>
+					</div>
+				<% end %>
+			</div>
+		<div>
+
 		<br><br>
-		<h2> List of Available Items </h2>
-		<br>
-			
-		<% @items_list.each do |item| %>
-			<h4><%= item.name %>: Php<%= item.price %></h4>
-			<p><%= item.description %></p>
-			<br>
-		<% end %>
+
+		<div>
+			<h2> Cart </h2>
+
+			<% if @cart_list.size == 0 %>
+				<label> Cart is empty </label>
+			<% else %>
+
+				<div id="owl-demo2" class="owl-carousel owl-theme">
+					<% (0..@cart_list.size-1).each do |i| %>
+						<div>
+							<%= @cart_list[i].name %> (Php<%= @cart_list[i].price %>): 
+							<% if @cart_items[i].quantity > 1 %> 
+								<%= @cart_items[i].quantity %> pieces
+							<% else %>
+								1 piece
+							<% end %>
+							<%= form_tag url_for(:controller=>"home", :action => "removefromcart"), :method => "post" do %>
+									<%= hidden_field_tag :cart_item_id,  @cart_items[i].id %>
+									<%= submit_tag 'x', class: "btn btn-default" %> 
+							<% end %>
+						</div>
+					<% end %>
+				</div>
+			<% end %>
+		<div>
+		
 	<% end %>
 </div>

@@ -4,14 +4,21 @@
 			<h2> List of Available Items </h2>
 			<div id="owl-demo" class="owl-carousel owl-theme">
 				<% @items_list.each do |item| %>
-					<div>
-						<h4><%= item.name %><br>Php<%= item.price %> </h4>
-						<%= item.description %><br><br>
-						<%= form_tag url_for(:controller=>"home", :action => "addtocart"), :method => "post" do %>
-								<%= hidden_field_tag :item_id,  item.id %>
-								<%= submit_tag 'Add to Cart', class: "btn btn-default" %> 
-						<% end %>
-						<br>
+					<div class = "item link row" id = "<%= 'itemdisplay' + item.id.to_s %>">
+						<div class = "col-sm-5" style = "color:#0000FFF">
+							<img src="<%= image_path( item.id.to_s + '.gif') %>" style="width:160px;height:160px">
+							<p align = "left"> [ Stock: <%= item.stock %> ]</p>
+						</div>
+						<div class = "col-sm-7">
+							<br>
+							<%= form_tag url_for(:controller=>"home", :action => "addtocart"), :method => "post" do %>
+									<%= hidden_field_tag :item_id,  item.id %>
+									<%= submit_tag 'Add to Cart', class: "btn btn-default" %> 
+							<% end %><br>
+							<h4><%= item.name %></h4>
+							<p>Php<%= item.price %> </p>
+							<br>
+						</div>
 					</div>
 				<% end %>
 			</div>
@@ -33,13 +40,13 @@
 				<label> Total: Php <%= get_cart_total_price %> </label>
 				<div id="owl-demo2" class="owl-carousel owl-theme">
 					<% (0..@cart_list.size-1).each do |i| %>
-						<div>
-							<%= @cart_list[i].name %> (Php<%= @cart_list[i].price %>)<br> 
+						<div class = "item link">
+							<h4> <%= @cart_list[i].name %> (Php<%= @cart_list[i].price %>)</h4>
 							<% if @cart_items[i].quantity > 1 %> 
 								<%= @cart_items[i].quantity %> pieces
 							<% else %>
 								1 piece
-							<% end %>
+							<% end %><br><br>
 							<%= form_tag url_for(:controller=>"home", :action => "removefromcart"), :method => "post" do %>
 									<%= hidden_field_tag :cart_item_id,  @cart_items[i].id %>
 									<%= submit_tag 'x', class: "btn btn-default" %> 

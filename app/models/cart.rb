@@ -4,7 +4,7 @@ class Cart < ActiveRecord::Base
   class << self # Class methods
     def addItem (cart_id, item_id)
     	item = Item.find(item_id)
-    	if item.stock < 2
+    	if item.stock < 1
     		return -1
     	end
 
@@ -12,7 +12,11 @@ class Cart < ActiveRecord::Base
 		if cart_item.blank?
 			CartItem.create(Cart_id: cart_id, Item_id: item_id, price: item.price, quantity: 1)
 		else
-			cart_item.first().update(quantity: cart_item.first().quantity+1)
+			if item.stock < cart_item.first().quantity+1
+				return -1
+			else
+				cart_item.first().update(quantity: cart_item.first().quantity+1)
+			end
 		end
 		return 1
   	end
@@ -25,10 +29,20 @@ class Cart < ActiveRecord::Base
 	end
 
 	def checkout (cart_id)
+		cartitems = CartItem.where(Cart_id: cart_id)
+		cartitems.each do |cartitem|
+			item = Item.find(cartitem.Item_id)
+			if item.stock - cartitem.quantity >= 0
+				item.update(stock: item.stock - cartitem.quantity)
+			else
+				return -1
+			end
+		end
 		cart = Cart.find(cart_id)
 		tp = totalPrice(cart_id)
 		cart.update(total: tp)
 		cart.update(checkout_date: DateTime.now)
+		return 1
 	end
 
 	def orderhistory(user_id)

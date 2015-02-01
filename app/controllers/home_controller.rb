@@ -34,10 +34,17 @@ class HomeController < ApplicationController
 
 	def checkout
 		if !Cart.empty?(current_user.Cart_id)
-			Cart.checkout(current_user.Cart_id)
-			current_user.Cart_id = nil
-			refreshcurrentcart
+			value = Cart.checkout(current_user.Cart_id)
+			if value == -1
+				@items_list = Item.all();
+				refreshcartitems
+				flash.now[:alert] = "Some items out of stock!"
+				render 'app/views/home/index.html.erb'
+				return
+			end
 		end
+		current_user.Cart_id = nil
+		refreshcurrentcart
 		refresh
 	end
 

@@ -3,7 +3,7 @@
 		<h3>Order History</h3>
 		<div align = "left" style="width:400px">
 			<% (0..orderhistory.size-1).each do |x| %>
-				<h4> <%= x+1 %>: <%= orderhistory[x][1] %> [Total: Php<%= orderhistory[x][2] %>]</h4>
+				<h4 align = "center"> <%= x+1 %>: <%= orderhistory[x][1] %> [Total: Php<%= orderhistory[x][2] %>]</h4>
 					<% items = orderhistory[x][0] %>
 					<% items.each do |item| %>
 						<%= item[0] %> (Php<%= item[1] %>, <%= item[2] %>)

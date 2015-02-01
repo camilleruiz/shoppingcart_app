@@ -77,3 +77,42 @@ p {
 form {
 	display: inline
 }
+
+.display {
+	
+}
+
+#owl-demo .item{
+  display: block;
+  cursor: pointer;
+  background: #333333;
+  padding: 10px 0px;
+  margin: 5px;
+  color: #FFF;
+  height : 220px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  text-align: center;
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0); 
+}
+#owl-demo .item:hover{
+  background: #212221;
+}
+
+#owl-demo2 .item{
+  display: block;
+  cursor: pointer;
+  background: #333333;
+  padding: 30px 0px;
+  margin: 5px;
+  color: #FFF;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  text-align: center;
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0); 
+}
+#owl-demo2 .item:hover{
+  background: #212221;
+}

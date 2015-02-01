@@ -1,0 +1,28 @@
+<div class="center hero-unit">
+	<% if user_signed_in? %>
+		<h2> Checkout </h2>
+
+		<div align = "left" style="width:400px">
+			<h4> Cart - Php<%= get_cart_total_price %></h4>
+			<div>
+				<% (0..@cart_list.size-1).each do |i| %>
+					<%= @cart_list[i].name %> (Php<%= @cart_list[i].price %>, 
+					<% if @cart_items[i].quantity > 1 %> 
+						<%= @cart_items[i].quantity %> pieces
+					<% else %>
+						1 piece
+					<% end %>
+					)<br>
+				<% end %>
+			</div>
+
+
+		</div> 
+
+		<%= form_tag url_for(:controller=>"home", :action => "checkout"), :method => "post" do %>
+				<%= submit_tag 'Checkout', class: "btn btn-default" %> 
+		<% end %>
+
+
+	<% end %>
+</div>

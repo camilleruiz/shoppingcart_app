@@ -1,31 +1,50 @@
 class HomeController < ApplicationController
 	before_action :authenticate_user!
 	def index
+		refreshcurrentcart
 		refresh
-		if current_user.Cart_id==nil
-			@current_cart = Cart.create(User_id:current_user.id)
-			current_user.update(Cart_id:@current_cart.id)
-		else
-			@current_cart = Cart.find(current_user.Cart_id)
+	end
+
+	def attemptcheckout
+		if !Cart.empty?(current_user.Cart_id)
+			refreshcartitems
+			render 'app/views/home/checkout.html.erb'
+			return
 		end
+		refreshcurrentcart
+		refresh
 	end
 
 	def addtocart
-		cart_item = CartItem.where(Cart_id: current_user.Cart_id, Item_id: params[:item_id])
-		if cart_item.blank?
-			item = Item.find(params[:item_id])
-			CartItem.create(Cart_id: current_user.Cart_id, Item_id: params[:item_id], price: item.price, quantity: 1)
-		else
-			cart_item.first().update(quantity: cart_item.first().quantity+1)
+		value = Cart.addItem(current_user.Cart_id, params[:item_id])
+		if value == -1
+			@items_list = Item.all();
+			refreshcartitems
+			flash.now[:alert] = "Out of stock!"
+			render 'app/views/home/index.html.erb'
+			return
 		end
 		refresh
 	end
 
 	def removefromcart
-		cart_item = CartItem.where(id: params[:cart_item_id])
-		if !cart_item.blank?
-			cart_item.first().destroy
-			refresh
+		Cart.removeItem(params[:cart_item_id])
+		refresh
+	end
+
+	def checkout
+		if !Cart.empty?(current_user.Cart_id)
+			Cart.checkout(current_user.Cart_id)
+			current_user.Cart_id = nil
+			refreshcurrentcart
+		end
+		refresh
+	end
+
+	def orderhistory
+		o = Cart.orderhistory(current_user.id)
+		if o != nil
+			return o
 		end
 	end
 
@@ -38,9 +57,26 @@ class HomeController < ApplicationController
 		end
 	end
 
+	def refreshcurrentcart
+		if current_user.Cart_id==nil
+			@current_cart = Cart.create(User_id:current_user.id)
+			current_user.update(Cart_id:@current_cart.id)
+		else
+			@current_cart = Cart.find(current_user.Cart_id)
+		end
+	end
+
 	def refresh
 		@items_list = Item.all();
 		refreshcartitems
 		render 'app/views/home/index.html.erb'
 	end
+
+	def get_cart_total_price
+		if current_user.Cart_id!=nil
+			return Cart.totalPrice(current_user.Cart_id)
+		end
+	end
+
+	helper_method :get_cart_total_price, :orderhistory
 end

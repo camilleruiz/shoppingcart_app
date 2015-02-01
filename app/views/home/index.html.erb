@@ -17,15 +17,20 @@
 			</div>
 		<div>
 
-		<br><br>
-
+		<br>
 		<div>
-			<h2> Cart </h2>
+			<h2>Cart
+				<% if @cart_list.size > 0 %>
+					<%= form_tag url_for(:controller=>"home", :action => "attemptcheckout"), :method => "post" do %>
+						<%= submit_tag 'Checkout', class: "btn btn-default" %>
+					<% end %>
+				<% end %>
+			</h2>
 
 			<% if @cart_list.size == 0 %>
 				<label> Cart is empty </label>
 			<% else %>
-
+				<label> Total: Php <%= get_cart_total_price %> </label>
 				<div id="owl-demo2" class="owl-carousel owl-theme">
 					<% (0..@cart_list.size-1).each do |i| %>
 						<div>
@@ -43,6 +48,7 @@
 					<% end %>
 				</div>
 			<% end %>
+
 		<div>
 		
 	<% end %>

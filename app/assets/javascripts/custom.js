@@ -5,8 +5,8 @@ var x = 5;
  
       items : 3,
       itemsDesktop : [1000, 2],
-      itemsDesktopSmall : [900, 1],
-      itemsTablet : [600, 1],
+      itemsDesktopSmall : [800, 1],
+      itemsTablet : [400, 1],
       itemsMobile : false,
       navigation : true, // Show next and prev buttons
       slideSpeed : 300,
@@ -18,7 +18,7 @@ var x = 5;
       items : 3,
       itemsDesktop : [1000, 2],
       itemsDesktopSmall : [900, 1],
-      itemsTablet : [600, 1],
+      itemsTablet : [400, 1],
       itemsMobile : false,
       navigation : true, // Show next and prev buttons
       slideSpeed : 300,

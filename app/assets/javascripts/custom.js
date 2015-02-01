@@ -3,9 +3,9 @@ $(document).ready(function() {
 var x = 5;
   $("#owl-demo").owlCarousel({
  
-      items : 3,
-      itemsDesktop : [1000, 2],
-      itemsDesktopSmall : [800, 1],
+      items : 2,
+      itemsDesktop : [1500, 2],
+      itemsDesktopSmall : [1400, 1],
       itemsTablet : [400, 1],
       itemsMobile : false,
       navigation : true, // Show next and prev buttons

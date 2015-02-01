@@ -1,19 +1,23 @@
 <div class="center hero-unit">
 	<% if user_signed_in? %>
 		<div>
-			<h2> List of Available Items </h2>
+			<h2> <i>Articles Philosophiques</i>: Philosophical Items </h2>
 			<div id="owl-demo" class="owl-carousel owl-theme">
 				<% @items_list.each do |item| %>
 					<div class = "item link row" id = "<%= 'itemdisplay' + item.id.to_s %>">
 						<div class = "col-sm-4" style = "color:#0000FFF">
 							<img src="<%= image_path( item.id.to_s + '.gif') %>" style="width:160px;height:160px">
-							<p align = "left"> [ Stock: <%= item.stock %> ]</p>
+							<p align = "center"> [ Stock: <%= item.stock %> ]</p>
 						</div>
 						<div class = "col-sm-8">
 							<br>
 							<%= form_tag url_for(:controller=>"home", :action => "addtocart"), :method => "post" do %>
 									<%= hidden_field_tag :item_id,  item.id %>
-									<%= submit_tag 'Add to Cart', class: "btn btn-default" %> 
+									<% if item.stock > 0 %>
+										<%= submit_tag 'Add to Cart', class: "btn btn-default" %>
+									<% else %>
+										<%= submit_tag 'No Stock', class: "btn btn-default", disabled: true %>
+									<% end %>
 							<% end %><br>
 							<h4><%= item.name %></h4>
 							<p>Php<%= item.price %><br><%=item.description%> </p>
@@ -26,7 +30,7 @@
 
 		<br>
 		<div>
-			<h2>Cart
+			<h2><i>Le Chariot</i>: Cart
 				<% if @cart_list.size > 0 %>
 					<%= form_tag url_for(:controller=>"home", :action => "attemptcheckout"), :method => "post" do %>
 						<%= submit_tag 'Checkout', class: "btn btn-default" %>

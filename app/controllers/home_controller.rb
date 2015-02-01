@@ -38,7 +38,7 @@ class HomeController < ApplicationController
 			if value == -1
 				@items_list = Item.all();
 				refreshcartitems
-				flash.now[:alert] = "Some items out of stock!"
+				flash.now[:alert] = "Some items in your cart were already out of stock by the time you checked out! Cart cleared of items that are out of stock."
 				render 'app/views/home/index.html.erb'
 				return
 			end
@@ -56,6 +56,7 @@ class HomeController < ApplicationController
 	end
 
 	def refreshcartitems
+		Cart.clearoutofstock(current_user.Cart_id)
 		@cart_items = CartItem.where(Cart_id: current_user.Cart_id)
 		@cart_list = []
 		@cart_items.each do |c|

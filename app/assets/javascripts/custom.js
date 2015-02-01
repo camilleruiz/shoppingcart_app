@@ -25,6 +25,7 @@ var x = 5;
       paginationSpeed : 400 
   });
 
+/*
    $('.link').on('click', function(event){
     var $this = $(this);
     if($this.hasClass('clicked')){
@@ -39,4 +40,5 @@ var x = 5;
       $this.css('background','#040707').addClass('clicked');
     }
   });
+*/
 });

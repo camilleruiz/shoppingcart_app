@@ -45,6 +45,17 @@ class Cart < ActiveRecord::Base
 		return 1
 	end
 
+	def clearoutofstock (cart_id)
+		cartitems = CartItem.where(Cart_id: cart_id)
+		cartitems.each do |cartitem|
+			item = Item.find(cartitem.Item_id)
+			if item.stock - cartitem.quantity < 0
+				cartitem.destroy
+			end
+		end
+
+	end
+
 	def orderhistory(user_id)
 		carts = Cart.where(User_id: user_id).where.not(checkout_date: nil)
 		orderhistory = []

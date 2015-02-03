@@ -4,8 +4,8 @@ var x = 5;
   $("#owl-demo").owlCarousel({
  
       items : 2,
-      itemsDesktop : [1500, 2],
-      itemsDesktopSmall : [1400, 1],
+      itemsDesktop : [1200, 2],
+      itemsDesktopSmall : [1000, 1],
       itemsTablet : [400, 1],
       itemsMobile : false,
       navigation : true, // Show next and prev buttons

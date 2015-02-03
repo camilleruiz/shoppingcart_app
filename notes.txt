@@ -3,6 +3,8 @@ rails g model Cart User:references total:decimal checkout_date:datetime
 rails g migration AddMycartToUsers Cart:references
 rails g model Item description:text name:string price:decimal stock:integer
 rails g model CartItem Item:references Cart:references quantity:integer price:decimal
+[My addition]
+rails g migration AddImagePathToItem image_path:string
 
 User
 	active_cart:cart
@@ -36,6 +38,10 @@ Item.create(name: "Augustine's Confessions", description: "Lord grant me chastit
 
 Item.create(name: "Ricoeursion", description:"Paikot-ikot sa aking hermenutikong bilog.", price: 2000, stock:12)
 
-Item.create(name: "Kuhn's Paradigm Shift", description:"", price: 2000, stock:12)
-Item.create(name: "Popper's Falsifiability", description:"", price: 500, stock:12)
-Item.create(name: "Heidegger's Dasein", description:"I saw da sein", price: 2000, stock:50)
+Item.create(name: "Pascal's Wager", description:"I'd wager my heart for you.", price: 143143, stock:143, image_path: "1.gif")
+Item.create(name: "Aristotle's Golden Mean", description:"I'm just a little bit caught in the middle.", price: 3000, stock:100, image_path: "1.gif")
+
+Item.create(name: "Kuhn's Paradigm Shift", description:"Do you ever feel like a paradigm, shifting through the wind", price: 50, stock:120, image_path: "1.gif")
+Item.create(name: "Heidegger's Dasein", description:"I saw Dasein and it opened up my eyes, and I am happy now living without [the They]", price: 20000, stock:500, image_path: "1.gif")
+
+Item.create(name: "Levinas' Face of the Other", description:"You're amazing just the way you are", price: 20000, stock:500, image_path: "1.gif")

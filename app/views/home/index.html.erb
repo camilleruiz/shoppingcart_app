@@ -12,8 +12,10 @@
 						<div class = "col-sm-8">
 							<br>
 							<%= form_tag url_for(:controller=>"home", :action => "addtocart"), :method => "post" do %>
+									
 									<%= hidden_field_tag :item_id,  item.id %>
 									<% if item.stock > 0 %>
+										<%= number_field_tag :item_qty, 1, min:1, max:item.stock, step:1, style: "color:#000" %> 
 										<%= submit_tag 'Add to Cart', class: "btn btn-default" %>
 									<% else %>
 										<%= submit_tag 'No Stock', class: "btn btn-default", disabled: true %>
@@ -27,7 +29,6 @@
 				<% end %>
 			</div>
 		<div>
-
 		<br>
 		<div>
 			<h2><i>Le Chariot</i>: Cart

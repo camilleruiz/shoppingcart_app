@@ -16,7 +16,7 @@ class HomeController < ApplicationController
 	end
 
 	def addtocart
-		value = Cart.addItem(current_user.Cart_id, params[:item_id])
+		value = Cart.addItem(current_user.Cart_id, params[:item_id], params[:item_qty].to_i)
 		if value == -1
 			@items_list = Item.all();
 			refreshcartitems

@@ -2,20 +2,20 @@ class Cart < ActiveRecord::Base
   belongs_to :User
 
   class << self # Class methods
-    def addItem (cart_id, item_id)
+    def addItem (cart_id, item_id, item_qty)
     	item = Item.find(item_id)
-    	if item.stock < 1
+    	if item.stock < item_qty
     		return -1
     	end
 
     	cart_item = CartItem.where(Cart_id: cart_id, Item_id: item_id)
 		if cart_item.blank?
-			CartItem.create(Cart_id: cart_id, Item_id: item_id, price: item.price, quantity: 1)
+			CartItem.create(Cart_id: cart_id, Item_id: item_id, price: item.price, quantity: item_qty)
 		else
-			cart_item.first().update(quantity: cart_item.first().quantity+1)
+			cart_item.first().update(quantity: cart_item.first().quantity+item_qty)
 		end
 
-		item.update(stock: item.stock - 1)
+		item.update(stock: item.stock - item_qty)
 		return 1
   	end
 

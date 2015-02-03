@@ -45,6 +45,7 @@ class HomeController < ApplicationController
 		end
 		current_user.Cart_id = nil
 		refreshcurrentcart
+		flash.now[:notice] = "Checkout successful."
 		refresh
 	end
 

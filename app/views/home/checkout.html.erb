@@ -18,34 +18,44 @@
 
 
 		</div> 
+		<br><br>
 
 
 
-		<%= form_tag url_for(:controller=>"home", :action => "checkout"), :method => "post" do %>
-				<%= field_set_tag 'Billing Information' do |f| %>
-				  <p>First Name:     <%= text_field_tag 'firstname', nil, :required => true %></p>
-				  <p>Last Name:      <%= text_field_tag 'lastname', nil, :required => true %></p>
-				  <p>Company: <%= text_field_tag 'company', nil %></p>
-				  <p>Email: <%= email_field_tag 'email', nil, :required => true %></p>
-				  <p>Phone: <%= phone_field_tag 'phone', nil, :required => true %></p>
-				  <br><br>
-				  <p>Address: <%= text_field_tag 'address', nil, :required => true %></p>
-				  <p>Address2: <%= text_field_tag 'address2', nil, :required => true %></p>
-				  <p>City: <%= text_field_tag 'city', nil, :required => true %></p>
-				  <p>Postal/ZIP Code: <%= text_field_tag 'postal', nil, :required => true %></p>
-				  <p>Country: <%= country_select("", "") %></p>
-				<% end %>
-				<br>
-
-				<%= field_set_tag 'Credit Card Details' do |f| %>
-				  <p>Card type:      <%= select_tag "Cart type", "<option>VISA</option><option>MasterCard</option><option>AMEX</option>".html_safe %> </p>
-				  <p>Card Number:     <%= text_field_tag 'firstname', nil, :required => true %></p>
-				  <p>Expiration: <%= text_field_tag 'yy', nil, :size=>"2", :placeholder =>"YY", :required => true %> / <%= text_field_tag 'mm', nil, :size=>"2", :placeholder =>"MM" , :required => true %></p>
-				  <p>CVV: <%= text_field_tag 'company', nil, :required => true %></p>
-				  <% end %>
-				<%= submit_tag 'Checkout', class: "btn btn-default" %> 
-		<% end %>
-
+			<%= form_tag url_for(:controller=>"home", :action => "checkout"), :method => "post" do %>
+				<div class = "row">
+					<div class = "col-sm-6">
+						<%= field_set_tag 'Billing Information' do |f| %>
+						  <p>First Name:     <%= text_field_tag 'firstname', nil, :required => true %></p>
+						  <p>Last Name:      <%= text_field_tag 'lastname', nil, :required => true %></p>
+						  <p>Company: <%= text_field_tag 'company', nil %></p>
+						  <p>Email: <%= email_field_tag 'email', nil, :required => true %></p>
+						  <p>Phone: <%= phone_field_tag 'phone', nil, :required => true %></p>
+						  <br><br>
+						  <p>Address: <%= text_field_tag 'address', nil, :required => true %></p>
+						  <p>Address2: <%= text_field_tag 'address2', nil, :required => true %></p>
+						  <p>City: <%= text_field_tag 'city', nil, :required => true %></p>
+						  <p>Postal/ZIP Code: <%= text_field_tag 'postal', nil, :required => true %></p>
+						  <p>Country: <%= country_select("", "") %></p>
+						<% end %>
+						<br>
+					</div>
+					<div class = "col-sm-6">
+						<%= field_set_tag 'Credit Card Details' do |f| %>
+						  <p>Card type:      <%= select_tag "Cart type", "<option>VISA</option><option>MasterCard</option><option>AMEX</option>".html_safe %> </p>
+						  <p>Card Number:     <%= text_field_tag 'firstname', nil, :required => true %></p>
+						  <p>Expiration: <%= text_field_tag 'yy', nil, :size=>"2", :placeholder =>"YY", :required => true %> / <%= text_field_tag 'mm', nil, :size=>"2", :placeholder =>"MM" , :required => true %></p>
+						  <p>CVV: <%= text_field_tag 'company', nil, :required => true %></p>
+						  <% end %>
+						  <br>
+					<%= field_set_tag 'Special Offer!' do |f| %>
+						<label> Get 100% off by typing the super secret code: givecamilleanA</label>
+						  <p>Special Code: <%= text_field_tag 'special code', nil%></p>
+					<% end %>
+					</div>
+				</div>
+					<%= submit_tag 'Checkout', class: "btn btn-default" %> 
+			<% end %>
 
 	<% end %>
 </div>

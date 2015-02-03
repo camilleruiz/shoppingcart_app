@@ -28,18 +28,18 @@ CartItem
 	quantity:integer
 	price:decimal
 
-Item.create(name: "Des Cartesian Plane", description: "Good for your mathematical needs.", price:500.00, stock:15)
+Item.create(name: "Des Cartesian Plane", description: "Good for your mathematical needs.", price:500.00, stock:15, image_path: "Cartesian.gif")
 
-Item.create(name: "Plato's Cave", description: "Can you get out of this cave?", price:1000.00, stock:20)
+Item.create(name: "Plato's Cave", description: "Can you get out of this cave?", price:1000.00, stock:20, image_path: "Cave.gif")
 
-Item.create(name: "Anselm's IQMCN", description: "That than which nothing greater can be bought.", price:99999999.00, stock:1)
+Item.create(name: "Anselm's IQMCN", description: "That than which nothing greater can be bought.", price:99999999.00, stock:1, image_path: "IQMCN.gif")
 
-Item.create(name: "Augustine's Confessions", description: "Lord grant me chastity and countenance, but not yet.", price: 1000.00, stock:5)
+Item.create(name: "Augustine's Confessions", description: "Lord grant me chastity and countenance, but not yet.", price: 1000.00, stock:5, image_path: "Confessions.gif")
 
-Item.create(name: "Ricoeursion", description:"Paikot-ikot sa aking hermenutikong bilog.", price: 2000, stock:12)
+Item.create(name: "Ricoeursion", description:"Paikot-ikot sa aking hermenutikong bilog.", price: 2000, stock:12, image_path: "bilog.gif")
 
-Item.create(name: "Pascal's Wager", description:"I'd wager my heart for you.", price: 143143, stock:143, image_path: "1.gif")
-Item.create(name: "Aristotle's Golden Mean", description:"I'm just a little bit caught in the middle.", price: 3000, stock:100, image_path: "1.gif")
+Item.create(name: "Pascal's Wager", description:"I'd wager my heart for you.", price: 143143, stock:143, image_path: "1.gif", image_path: "wager.gif")
+Item.create(name: "Aristotle's Golden Mean", description:"I'm just a little bit caught in the middle.", price: 3000, stock:100, image_path: "mean.gif")
 
 Item.create(name: "Kuhn's Paradigm Shift", description:"Do you ever feel like a paradigm, shifting through the wind", price: 50, stock:120, image_path: "1.gif")
 Item.create(name: "Heidegger's Dasein", description:"I saw Dasein and it opened up my eyes, and I am happy now living without [the They]", price: 20000, stock:500, image_path: "1.gif")

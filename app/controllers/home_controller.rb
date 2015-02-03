@@ -56,7 +56,6 @@ class HomeController < ApplicationController
 	end
 
 	def refreshcartitems
-		Cart.clearoutofstock(current_user.Cart_id)
 		@cart_items = CartItem.where(Cart_id: current_user.Cart_id)
 		@cart_list = []
 		@cart_items.each do |c|

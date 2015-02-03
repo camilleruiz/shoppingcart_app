@@ -35,3 +35,7 @@ Item.create(name: "Anselm's IQMCN", description: "That than which nothing greate
 Item.create(name: "Augustine's Confessions", description: "Lord grant me chastity and countenance, but not yet.", price: 1000.00, stock:5)
 
 Item.create(name: "Ricoeursion", description:"Paikot-ikot sa aking hermenutikong bilog.", price: 2000, stock:12)
+
+Item.create(name: "Kuhn's Paradigm Shift", description:"", price: 2000, stock:12)
+Item.create(name: "Popper's Falsifiability", description:"", price: 500, stock:12)
+Item.create(name: "Heidegger's Dasein", description:"I saw da sein", price: 2000, stock:50)

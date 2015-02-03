@@ -12,48 +12,28 @@ class Cart < ActiveRecord::Base
 		if cart_item.blank?
 			CartItem.create(Cart_id: cart_id, Item_id: item_id, price: item.price, quantity: 1)
 		else
-			if item.stock < cart_item.first().quantity+1
-				return -1
-			else
-				cart_item.first().update(quantity: cart_item.first().quantity+1)
-			end
+			cart_item.first().update(quantity: cart_item.first().quantity+1)
 		end
+
+		item.update(stock: item.stock - 1)
 		return 1
   	end
 
   	def removeItem (cart_item_id)
   		cart_item = CartItem.where(id: cart_item_id)
 		if !cart_item.blank?
+			item = Item.find(cart_item.first().Item_id)
+			item.update(stock: item.stock + cart_item.first().quantity)
 			cart_item.first().destroy
 		end
 	end
 
 	def checkout (cart_id)
-		cartitems = CartItem.where(Cart_id: cart_id)
-		cartitems.each do |cartitem|
-			item = Item.find(cartitem.Item_id)
-			if item.stock - cartitem.quantity >= 0
-				item.update(stock: item.stock - cartitem.quantity)
-			else
-				return -1
-			end
-		end
 		cart = Cart.find(cart_id)
 		tp = totalPrice(cart_id)
 		cart.update(total: tp)
 		cart.update(checkout_date: DateTime.now)
 		return 1
-	end
-
-	def clearoutofstock (cart_id)
-		cartitems = CartItem.where(Cart_id: cart_id)
-		cartitems.each do |cartitem|
-			item = Item.find(cartitem.Item_id)
-			if item.stock - cartitem.quantity < 0
-				cartitem.destroy
-			end
-		end
-
 	end
 
 	def orderhistory(user_id)

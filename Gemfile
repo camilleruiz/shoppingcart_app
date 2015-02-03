@@ -29,6 +29,8 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'devise'
 gem 'rails_12factor'
 gem 'owlcarousel-rails'
+
+gem 'country_select', github: 'stefanpenner/country_select'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

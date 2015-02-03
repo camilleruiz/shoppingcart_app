@@ -3,15 +3,17 @@ A Shopping Cart application developed by Camille Ruiz
 
 Progress:
 - Login/Logout using Devise gem
-- Started incorporating bootstrap
-- Listing items
+- Incorporated bootstrap
+- Moved business logic in model rather than keeping it in the homecontroller
+- shopping cart (list items, add (one at a time)/remove(all at once) cart item/s, checkout)
+- Used owl carousel
 
 Problems/challenges encountered:
 - login/logout working on localhost, didn't work in heroku
 	- fixed through routes
 - didn't understand how bootstrap works (still feeling my way through it)
 - didn't know how to display objects/instances from database
+- destroy function didn't immediately work when deployed in heroku
 
-Next steps:
-- logic of putting item in cart
-- design
+Next steps [if there is time]:
+- improve on design
